@@ -14,10 +14,9 @@ const TablaPokemon = ({results}) => {
         const {results}=data;
         setResultados(results);
       });
-      setTimeout(()=>{
-        console.log(results)}
-        ,2000);
-        formatResponse(results);
+      setTimeout(1000);
+      await formatResponse(results)
+
   }
   useEffect(()=>{
     const iniciar=async()=>{
