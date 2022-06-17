@@ -11,14 +11,13 @@ const Header = ({setResults}) => {
     useEffect(()=>{
         const mostrarResult=async()=>{
             await CallApi(busqueda)
-                .then(result=>{setResults(result);console.log(result)})
+                .then(result=>setResults(result));
         }
         mostrarResult();
     },[busqueda]);
 
   const buscar=async()=>{
-    const result=await CallApi(busqueda);
-    console.log(result);
+    await CallApi(busqueda);
   }
   
   const items=[

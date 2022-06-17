@@ -9,8 +9,10 @@ function App() {
   
   return (
     <>
-      <Header setResults={setResults}/>
-      <TablaPokemon results={results}/>
+      <React.StrictMode>
+        <Header setResults={setResults}/>
+        <TablaPokemon resultados={results}/>
+      </React.StrictMode>
     </>
   )
 }

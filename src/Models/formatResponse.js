@@ -1,18 +1,16 @@
-const formatResponse= async(object)=>{
-    let datos=[];
-    if(typeof(object)!=Array){
-        console.log(true);
-        const {results} =object;
-
-        results.forEach(async (element,index)=>{
-            const {url}=element;
-            datos[index]= await fetch(url)
-                .then(response=>response.json());
+const formatResponse= async(data)=>{
+    try{
+        const dataArray=[];
+        data.forEach(async  element=>{
+            await fetch(element.url)
+                .then(response=> response.json())
+                .then(results=> dataArray.push(results));
         });
-
-
-        }
-    console.log(datos[0]);
+        
+    }catch(e){
+        console.log('Undefined Data');
+        return undefined;
+    }
 
 }
 export default formatResponse

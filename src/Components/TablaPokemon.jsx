@@ -4,36 +4,28 @@ import { Column } from 'primereact/column';
 import formatResponse from '../Models/formatResponse';
 
 
-const TablaPokemon = ({results}) => {
-  const [resultados, setResultados] = useState([]);
+const TablaPokemon = ({resultados}) => {
 
-  const buscarDatos=async()=>{
-    await fetch('https://pokeapi.co/api/v2/pokemon/?&limit=20')
-      .then(response=>response.json())
-      .then(data=> {
-        const {results}=data;
-        setResultados(results);
-      });
-      setTimeout(1000);
-      await formatResponse(results)
-
-  }
-  useEffect(()=>{
-    const iniciar=async()=>{
-      await buscarDatos();
+  const {results} = resultados;
+  
+  useEffect(() => {
+    async function update(){
+      await formatResponse(results);
     }
-    iniciar();
-    console.log(resultados)
+    update();
   },[]);
   
+
   return (
     <>
-            <div className="card" style={{ height: 'calc(100vh - 145px)'}}rowSpan="4">
-                <DataTable value={resultados} scrollable scrollHeight="flex">
-                  <Column field="name" header="Name"></Column>
-                  <Column field="url"header="Pokemon Link"></Column>
+      <div>
+            <div className="card" style={{ height: 'calc(100vh - 145px)' }}>
+                <DataTable value={results} scrollable scrollHeight="flex">
+                    <Column field="name" header="Name"></Column>
+                    <Column field="url" header="Url"></Column>
                 </DataTable>
             </div>
+        </div>
     </>
   )
 }
