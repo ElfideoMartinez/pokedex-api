@@ -6,11 +6,15 @@ const formatResponse= async(data)=>{
                 .then(response=> response.json())
                 .then(results=> dataArray.push(results));
         });
-        console.log(dataArray)
-        return dataArray;
+        setTimeout(2000);
+        for(let i=0; i<dataArray.length; i++){
+            console.log(dataArray[i]);
+        }
+        console.log(dataArray);
+        
     }catch(e){
         console.log('Undefined Data');
-        return undefined;
+        return;
     }
 
 }
