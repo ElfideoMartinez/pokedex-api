@@ -5,14 +5,16 @@ import formatResponse from '../Models/formatResponse';
 
 
 const TablaPokemon = ({resultados}) => {
+  const [datosPokemon,setDatosPokemon]=useState([]);
 
   const {results} = resultados;
   
   useEffect(() => {
     async function update(){
-      await formatResponse(results);
+      const datosFormateados=await formatResponse(results);
+      setDatosPokemon(datosFormateados);
     }
-    update();
+    update().then(console.log(datosPokemon));
   },[]);
   
 
@@ -23,6 +25,7 @@ const TablaPokemon = ({resultados}) => {
                 <DataTable value={results} scrollable scrollHeight="flex">
                     <Column field="name" header="Name"></Column>
                     <Column field="url" header="Url"></Column>
+                    <Column field="abilities" header="Habilidades"></Column>
                 </DataTable>
             </div>
         </div>

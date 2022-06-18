@@ -6,7 +6,8 @@ const formatResponse= async(data)=>{
                 .then(response=> response.json())
                 .then(results=> dataArray.push(results));
         });
-        
+        console.log(dataArray)
+        return dataArray;
     }catch(e){
         console.log('Undefined Data');
         return undefined;
