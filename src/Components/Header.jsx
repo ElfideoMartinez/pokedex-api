@@ -2,29 +2,18 @@ import React,{useState, useEffect} from 'react'
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 
-import {itemsPokemon} from '../Models/Pokemos';
-import CallApi from '../Models/CallApi';
+import {Secciones} from '../Models/Pokemons';
 
-const Header = ({setResults}) => {
-    const [busqueda,setBusqueda] =useState('?');
+const Header = ({setBusqueda}) => {
+  const[inputBusquda,setInputBusqueda]=useState('?');
 
-    useEffect(()=>{
-        const mostrarResult=async()=>{
-            await CallApi(busqueda)
-                .then(result=>setResults(result));
-        }
-        mostrarResult();
-    },[busqueda]);
-
-  const buscar=async()=>{
-    await CallApi(busqueda);
-  }
+    
   
   const items=[
     {
       label: 'Pokemon',
       icon: <i className="pi pi-filter-fill"></i>,
-      items:itemsPokemon
+      items:Secciones
     }
   ];
   return (
@@ -32,8 +21,8 @@ const Header = ({setResults}) => {
       <Menubar id='buscadorPokemon'
          model={items} 
          end={<span className="p-input-icon-right" style={{cursor: 'pointer'}}>
-         <i className="pi pi-search" onClick={buscar} />
-         <InputText onChange={e=>{setBusqueda(e.target.value)}}/>
+         <i className="pi pi-search" onClick={setBusqueda(inputBusquda)} />
+         <InputText onChange={e=>{setInputBusqueda(e.target.value)}}/>
       </span>}
          />
     </>

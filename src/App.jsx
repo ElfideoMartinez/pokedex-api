@@ -5,13 +5,13 @@ import TablaPokemon from './Components/TablaPokemon';
 import Header from './Components/Header';
 
 function App() {
-  const [results, setResults]=useState([]);
-  
+  const [busqueda, setBusqueda]=useState('?');
+
   return (
     <>
       <React.StrictMode>
-        <Header setResults={setResults}/>
-        <TablaPokemon resultados={results}/>
+        <Header setBusqueda={setBusqueda}/>
+        <TablaPokemon busqueda={busqueda}/>
       </React.StrictMode>
     </>
   )
